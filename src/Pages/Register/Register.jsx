@@ -3,6 +3,7 @@ import Navbar from "../Shared/Navbar/Navbar";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { sendEmailVerification, updateProfile } from "firebase/auth";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 
@@ -11,7 +12,8 @@ const Register = () => {
 
   const { createUser ,user} = useContext(AuthContext);
   const [success,setSuccess] = useState('');
-  const [loginError,setLoginError] = useState('');
+  const [registerError,setRegisterError] = useState('');
+  const [showPassword,setShowPassword] = useState(false);
   const Navigate = useNavigate()
 
   const handleRegister = e =>{
@@ -22,11 +24,26 @@ const Register = () => {
     const photo = form.get('photo')
     const email = form.get('email')
     const password = form.get('password');
+    const accepted = form.get('accepted')
     console.log(name,photo,email,password)
 
     //reset error and success
     setSuccess('');
-    setLoginError('');
+    setRegisterError('');
+
+    if(password.length < 6){
+      setRegisterError('Password should be at least 6 characters or longer');
+      return;
+    }
+    else if(!/[A-Z]/.test(password)){
+      setRegisterError('Your password should have at least one upper case characters.')
+      return;
+     }
+
+     
+     else if(!accepted){
+      setRegisterError('please accept our terms and conditions!')
+     }
 
     // createUser
 
@@ -52,7 +69,7 @@ const Register = () => {
     })
     .catch(error=>{
       console.error(error)
-      setLoginError(error.message)
+      setRegisterError(error.message)
     })
 
 
@@ -106,18 +123,34 @@ const Register = () => {
     <label className="label">
       <span className="label-text text-xl text-zinc-400 font-semibold my-2">Password</span>
     </label>
-    <input type="password" 
-    name='password' placeholder="password" className="input input-bordered mb-2 text-zinc-800 text-[11px] w-full p-7"required />
-    <label className="label">
-      <a href="#" className="label-text-alt link link-hover mt-2 text-zinc-500 font-semibold">Forgot password?</a>
-    </label>
+     <div className='relative'>
+           <input 
+              type= { showPassword ? "text" : "password"}
+            
+              name='password' 
+              placeholder="password" 
+              className="input input-bordered mb-2 
+              text-zinc-800 text-[11px] w-full p-7"required />
+   
+              <span className='absolute top-5 right-5 text-[10px]' onClick={() => setShowPassword(!showPassword)}>{ showPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}  </span>
+           </div>
+   
+   <div className="mt-4 flex">
+    <input type="checkbox" name="terms" id="terms" />
+    <label className="ml-2 text-zinc-400 text-[10px] font-semibold" >Accept our <a href="">Terms and Conditions</a> </label>
+
+   </div>
+   
   </div>
+
+
+
   <div className="form-control mt-6">
     <button className=" bg-zinc-800 text-white w-full text-[12px] p-3 font-semibold">Register</button>
   </div>
 </form>
       {
-        loginError && <p className='text-red-800 text-center mt-2 text-2xl' > {loginError} </p>
+        registerError && <p className='text-red-800 text-center mt-2 text-2xl' > {registerError} </p>
       }
       {
         success && <p className='text-green-800 text-center mt-2 text-2xl'> {success} </p>

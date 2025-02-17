@@ -4,13 +4,12 @@ import Navbar from '../Shared/Navbar/Navbar';
 import { useContext, useRef, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { sendPasswordResetEmail} from 'firebase/auth';
-import app from '../../Firebase/Fifebase.config';
+
 
 
 const Login = () => {
 
-  const { signIn} =useContext(AuthContext);
+  const { signIn, PasswordResetEmail} = useContext(AuthContext);
   const [success,setSuccess] = useState('');
   const [loginError,setLoginError] = useState('');
   const [showPassword,setShowPassword] = useState(false);
@@ -62,7 +61,7 @@ const Login = () => {
       return;}
 
       //send validation email
-      sendPasswordResetEmail(app,email )
+      PasswordResetEmail(email )
       .then(() =>{
         alert('please check your email')
       })
@@ -103,7 +102,7 @@ const Login = () => {
         <div className='relative'>
         <input 
            type= { showPassword ? "text" : "password"}
-          // type='password'
+         
            name='password' 
            placeholder="password" 
            className="input input-bordered mb-2 

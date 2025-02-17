@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, sendPasswordResetEmail, signInWithEmailAndPassword} from "firebase/auth";
 import app from "../Firebase/Fifebase.config";
 
 
@@ -18,11 +18,16 @@ const AuthProvider = ({children}) => {
             
       }
 
+      const PasswordResetEmail = (email) =>{
+            return sendPasswordResetEmail(auth,email)
+      }
+
 
       const authInfo ={
             user,
             createUser,
-            signIn
+            signIn,
+            PasswordResetEmail
 
       }
       return (
