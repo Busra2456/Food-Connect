@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
       const links = <div className="text-[10px] lg:flex font-semibold text-base-900 ">
@@ -12,10 +12,10 @@ const Navbar = () => {
         
       </div>
       return (
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center ">
                  <div className="">
                   
-                 <div className="navbar  ">
+                 <div className="navbar mb-2 ">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className= "lg:hidden">
@@ -38,7 +38,13 @@ const Navbar = () => {
         {links}
       </ul>
     </div>
-    <a className="font-bold text-4xl"><div><span className="text-red-900" >F</span>ood Con<span className="text-red-900">n</span>ect </div> </a>
+    <a className="font-bold text-4xl">
+      
+     <div className="flex items-center">
+     <div className="flex items-center "><span className="text-red-900" >F</span>ood <div>Con<span className="text-red-900">n</span>ect</div> </div> 
+     </div>
+      
+      </a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 ml-72">
@@ -48,7 +54,7 @@ const Navbar = () => {
    
   </div>
 </div>
-<a className="btn text-[15px] text-base-700 font-bold">Login</a>
+<Link to={'/Login'} ><button className="btn text-[15px] text-base-700 font-bold">Login</button></Link>
 </div>
            
       );
