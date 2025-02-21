@@ -14,7 +14,7 @@ const Register = () => {
   const [success,setSuccess] = useState('');
   const [registerError,setRegisterError] = useState('');
   const [showPassword,setShowPassword] = useState(false);
-  const Navigate = useNavigate()
+  
 
   const handleRegister = e =>{
     e.preventDefault();
@@ -24,7 +24,8 @@ const Register = () => {
     const photo = form.get('photo')
     const email = form.get('email')
     const password = form.get('password');
-    const accepted = form.get('accepted')
+    
+   
     console.log(name,photo,email,password)
 
     //reset error and success
@@ -36,14 +37,12 @@ const Register = () => {
       return;
     }
     else if(!/[A-Z]/.test(password)){
-      setRegisterError('Your password should have at least one upper case characters.')
+      alert('Your password should have at least one upper case characters.')
       return;
      }
 
      
-     else if(!accepted){
-      setRegisterError('please accept our terms and conditions!')
-     }
+    
 
     // createUser
 
@@ -59,13 +58,13 @@ const Register = () => {
       .then(() => console.log('profile updated'))
       .catch()
       //send Verification email :
-      sendEmailVerification(result.user)
-      .then(() =>{
-        console.log('Please check your email verify your account')
+      // sendEmailVerification(result.user)
+      // .then(() =>{
+      //   console.log('Please check your email verify your account')
         
 
-      })
-      Navigate('/Login')
+      // })
+      e.target.reset();
     })
     .catch(error=>{
       console.error(error)
@@ -135,11 +134,7 @@ const Register = () => {
               <span className='absolute top-5 right-5 text-[10px]' onClick={() => setShowPassword(!showPassword)}>{ showPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}  </span>
            </div>
    
-   <div className="mt-4 flex">
-    <input type="checkbox" name="terms" id="terms" />
-    <label className="ml-2 text-zinc-400 text-[10px] font-semibold" >Accept our <a href="">Terms and Conditions</a> </label>
-
-   </div>
+  
    
   </div>
 

@@ -6,14 +6,32 @@ import Menu from "../Pages/Shared/Menu/Menu";
 import Contact from "../Pages/Shared/Contact/Contact";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import ErrorPage from "../ErrorPage/ErrorPage";
+import Cards from "../Pages/Cards/Cards";
+import Details from "../Pages/Details/Details";
+
 
 const router = createBrowserRouter([
       {
         path: "/",
         element:<Root></Root>,
+        errorElement:<ErrorPage></ErrorPage>,
         children:[{
             path:'/',
-            element:<Home></Home>
+            element:<Home></Home>,
+           
+           
+            
+        },
+        {
+          path:'/Cards',
+         
+          element:<Cards></Cards>,
+         
+         
+          
+          
+
         },
         {
           path:'/About',
@@ -39,6 +57,15 @@ const router = createBrowserRouter([
           path:'/Register',
           element:<Register></Register>
 
+        },
+        {
+          path:'/card/:id',
+          loader:() =>  fetch('../cards.json'),
+          element:<Details></Details>
+          
+
+         
+          
         }
       
       
