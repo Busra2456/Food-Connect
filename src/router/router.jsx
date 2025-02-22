@@ -9,6 +9,7 @@ import Register from "../Pages/Register/Register";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Cards from "../Pages/Cards/Cards";
 import Details from "../Pages/Details/Details";
+import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -40,12 +41,13 @@ const router = createBrowserRouter([
         },
         {
           path:'/Menu',
+          loader:() =>  fetch('../cards.json'),
           element:<Menu></Menu>
 
         },
         {
           path:'/Contact',
-          element:<Contact></Contact>
+          element:<PrivateRoute><Contact></Contact></PrivateRoute>
 
         },
         {

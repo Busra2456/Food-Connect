@@ -1,5 +1,6 @@
 
 import Cards from '../Cards/Cards';
+import Footer from '../Footer/Footer';
 import Navbar from '../Shared/Navbar/Navbar';
 import Header from './header';
 
@@ -13,6 +14,7 @@ const Home = () => {
             <Navbar></Navbar>
             <Header></Header>
            <Cards></Cards>
+           <Footer></Footer>
 
           
 

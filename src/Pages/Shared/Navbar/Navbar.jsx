@@ -74,7 +74,7 @@ const Navbar = () => {
       </div>
       {
        user ? <>
-       <span> {user.photoURL} </span>
+       {/* <span> {user.photoURL} </span> */}
 <button onClick={handleLogOut} className="btn text-[12px] text-base-700 p-5" >Sign Out</button>
        </> :
         <Link to="/Login" ><button className="btn text-[12px] text-base-700 p-5" >Login</button></Link>
