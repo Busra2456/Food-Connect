@@ -11,6 +11,15 @@ const auth = getAuth(app)
 const AuthProvider = ({children}) => {
       const [user,setUser] = useState(null)
       const [loading,setLoading] = useState(true)
+      const [cards,setCards] = useState([]);
+
+            useEffect(() =>{
+            
+            fetch('cards.json')
+            .then(res => res.json())
+            .then(data => setCards(data))
+   
+},[])
 
 
       const createUser = (email,password) =>{
@@ -59,6 +68,7 @@ const AuthProvider = ({children}) => {
 
       const authInfo ={
             user,
+            cards,
             loading,
             createUser,
             signIn,

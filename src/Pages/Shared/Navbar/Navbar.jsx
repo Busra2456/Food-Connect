@@ -14,7 +14,7 @@ const Navbar = () => {
         <li className=" hover:underline  "> <NavLink to={'/'} >HOME</NavLink> </li>
         
         <li className=" hover:underline" > <NavLink to={'/About'} >ABOUT</NavLink> </li>
-        <li className=" hover:underline" > <NavLink to={'/Menu'} >MENU</NavLink> </li>
+        
         
 
         <li className=" hover:underline" > <NavLink to={'/Contact'} >CONTACT</NavLink> </li>

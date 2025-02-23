@@ -1,20 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Card from '../catd/Card';
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Cards = () => {
-     
+      const {cards} = useContext(AuthContext);
       
      
      
-      const [cards,setCards] = useState([]);
+     
       const [dataLength,setDataLength] = useState(6);
 
-      useEffect(() =>{
-            
-            fetch('cards.json')
-            .then(res => res.json())
-            .then(data => setCards(data))
-      },[])
+
      
       return (
            

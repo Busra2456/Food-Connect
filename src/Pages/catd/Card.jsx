@@ -1,10 +1,28 @@
-import { Link } from "react-router-dom";
-
+import { Link,useParams} from "react-router-dom";
+import { saveCardItems } from "../../LocalStoage/LocalStoage";
+import { toast, ToastContainer } from "react-toastify";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 
 const Card = ({card}) => {
+  const {cards} = useContext(AuthContext);
+
    const {estate_title,description,image,id,price} = card;
-      return (
+   
+   const {ids} = useParams()
+   const idInt = parseInt(ids)
+   const carded =  cards.find(carded => carded.ids === idInt)
+   console.log(carded,id);
+
+   const handelCards = () =>{
+    saveCardItems(idInt)
+         toast('You have Order successfully');
+   }
+  
+ 
+   
+   return (
            
             <div>
                  
@@ -29,11 +47,16 @@ Read more...</Link>
 </div>
 
 <p className="text-2xl" >Price : {price} </p>
-  
-    <div className="card-actions w-full">
-      <button  className="text-center ml-6 btn bg-gradient-to-r from-[#25b202] to-[#c32902]
-       text-white px-24 py-6 rounded-sm text-xl mt-3 ">Buy Now</button>
+
+<div className="card-actions w-full text-center ">
+      <button
+       onClick={handelCards}
+      
+      className="text-center btn bg-gradient-to-r from-[#25b202] to-[#c32902]
+       text-white px-22 py-7  font-bold rounded-sm text-2xl mt-3">Buy Now <div className="text-3xl p-5"><ToastContainer></ToastContainer></div> </button>
     </div>
+  
+  
     
   </div>
 </div>

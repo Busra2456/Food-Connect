@@ -1,4 +1,5 @@
 
+import { Helmet } from 'react-helmet';
 import Cards from '../Cards/Cards';
 import Footer from '../Footer/Footer';
 import Navbar from '../Shared/Navbar/Navbar';
@@ -10,7 +11,10 @@ const Home = () => {
       
       
       return (
-            <div className=' ' >
+            <div>
+                  <Helmet>
+                        <title>Food Connect</title>
+                  </Helmet>
             <Navbar></Navbar>
             <Header></Header>
            <Cards></Cards>
